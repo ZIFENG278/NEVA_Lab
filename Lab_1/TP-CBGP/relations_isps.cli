@@ -1,0 +1,610 @@
+  print "*** Multi-ISPs Internet topology ***\n"
+
+  bgp options msg-monitor "relations_isps.msg"
+
+  net add node 10.1.1.1
+  net add node 10.2.1.1
+  net add node 10.3.1.1
+  net add node 10.4.1.1
+  net add node 10.5.1.1
+  net add node 10.6.1.1
+  net add node 10.7.1.1
+  net add node 10.8.1.1
+  net add node 10.9.1.1
+  net add node 10.9.1.2
+  net add node 10.9.1.3
+  net add node 10.10.1.1
+
+  net add link 10.10.1.1 10.2.1.1
+  net add link 10.10.1.1 10.6.1.1
+  net add link 10.10.1.1 10.9.1.1
+  net add link 10.9.1.1 10.9.1.2
+  net add link 10.9.1.1 10.9.1.3
+  net add link 10.9.1.3 10.9.1.2
+  net add link 10.9.1.3 10.7.1.1
+  net add link 10.9.1.2 10.8.1.1
+  net add link 10.8.1.1 10.5.1.1
+  net add link 10.7.1.1 10.4.1.1
+  net add link 10.4.1.1 10.1.1.1
+  net add link 10.5.1.1 10.1.1.1
+  net add link 10.5.1.1 10.6.1.1
+  net add link 10.6.1.1 10.3.1.1
+  net add link 10.3.1.1 10.1.1.1
+  net add link 10.3.1.1 10.2.1.1
+  net add link 10.1.1.1 10.2.1.1
+
+  net node 10.1.1.1 route add --oif=10.4.1.1 10.4.0.0/16 5
+  net node 10.1.1.1 route add --oif=10.5.1.1 10.5.0.0/16 5
+  net node 10.1.1.1 route add --oif=10.2.1.1 10.2.0.0/16 5
+  net node 10.1.1.1 route add --oif=10.3.1.1 10.3.0.0/16 5
+  net node 10.2.1.1 route add --oif=10.10.1.1 10.10.0.0/16 5
+  net node 10.2.1.1 route add --oif=10.1.1.1 10.1.0.0/16 5
+  net node 10.2.1.1 route add --oif=10.3.1.1 10.3.0.0/16 5
+  net node 10.3.1.1 route add --oif=10.6.1.1 10.6.0.0/16 5
+  net node 10.3.1.1 route add --oif=10.2.1.1 10.2.0.0/16 5
+  net node 10.3.1.1 route add --oif=10.1.1.1 10.1.0.0/16 5
+  net node 10.4.1.1 route add --oif=10.1.1.1 10.1.0.0/16 5
+  net node 10.4.1.1 route add --oif=10.7.1.1 10.7.0.0/16 5
+  net node 10.5.1.1 route add --oif=10.1.1.1 10.1.0.0/16 5
+  net node 10.5.1.1 route add --oif=10.6.1.1 10.6.0.0/16 5
+  net node 10.5.1.1 route add --oif=10.8.1.1 10.8.0.0/16 5
+  net node 10.6.1.1 route add --oif=10.10.1.1 10.10.0.0/16 5
+  net node 10.6.1.1 route add --oif=10.5.1.1 10.5.0.0/16 5
+  net node 10.6.1.1 route add --oif=10.3.1.1 10.3.0.0/16 5
+  net node 10.7.1.1 route add --oif=10.4.1.1 10.4.0.0/16 5
+  net node 10.7.1.1 route add --oif=10.9.1.3 10.9.0.0/16 5
+  net node 10.8.1.1 route add --oif=10.5.1.1 10.5.0.0/16 5
+  net node 10.8.1.1 route add --oif=10.9.1.2 10.9.0.0/16 5
+  net node 10.9.1.1 route add --oif=10.10.1.1 10.10.0.0/16 5
+  net node 10.9.1.1 route add --oif=10.9.1.2 10.9.1.2/32  5
+  net node 10.9.1.1 route add --oif=10.9.1.3 10.9.1.3/32  5
+  net node 10.9.1.2 route add --oif=10.9.1.1 10.9.1.1/32  5
+  net node 10.9.1.2 route add --oif=10.9.1.3 10.9.1.3/32  5
+  net node 10.9.1.2 route add --oif=10.8.1.1 10.8.0.0/16 5
+  net node 10.9.1.3 route add --oif=10.9.1.1 10.9.1.1/32  5
+  net node 10.9.1.3 route add --oif=10.9.1.2 10.9.1.2/32  5
+  net node 10.9.1.3 route add --oif=10.7.1.1 10.7.0.0/16 5
+  net node 10.10.1.1 route add --oif=10.2.1.1 10.2.0.0/16  5
+  net node 10.10.1.1 route add --oif=10.6.1.1 10.6.0.0/16  5
+  net node 10.10.1.1 route add --oif=10.9.1.1 10.9.0.0/16  5
+  net node 10.9.1.1 route add --oif=10.9.1.2 10.8.0.0/16  12
+  net node 10.9.1.1 route add --oif=10.9.1.3 10.7.0.0/16  11
+  net node 10.9.1.2 route add --oif=10.9.1.1 10.10.0.0/16  10
+  net node 10.9.1.2 route add --oif=10.9.1.3 10.7.0.0/16  10
+  net node 10.9.1.3 route add --oif=10.9.1.1 10.10.0.0/16  10
+  net node 10.9.1.3 route add --oif=10.9.1.2 10.8.0.0/16  10
+
+
+
+
+  bgp add router 1 10.1.1.1
+  bgp add router 2 10.2.1.1
+  bgp add router 3 10.3.1.1
+  bgp add router 4 10.4.1.1
+  bgp add router 5 10.5.1.1
+  bgp add router 6 10.6.1.1
+  bgp add router 7 10.7.1.1
+  bgp add router 8 10.8.1.1
+  bgp add router 9 10.9.1.1
+  bgp add router 9 10.9.1.2
+  bgp add router 9 10.9.1.3
+  bgp add router 10 10.10.1.1
+
+
+  bgp router 10.1.1.1
+  	add network 10.1.0.0/16
+  	add peer 5 10.5.1.1
+  	add peer 4 10.4.1.1
+  	add peer 3 10.3.1.1
+  	add peer 2 10.2.1.1
+  	peer 10.2.1.1 up
+  	peer 10.3.1.1 up
+  	peer 10.4.1.1 up
+  	peer 10.5.1.1 up
+
+  bgp router 10.2.1.1
+  	add network 10.2.0.0/16
+  	add peer 1 10.1.1.1
+  	add peer 3 10.3.1.1
+  	add peer 10 10.10.1.1
+  	peer 10.1.1.1 up
+  	peer 10.3.1.1 up
+  	peer 10.10.1.1 up
+
+  bgp router 10.3.1.1
+  	add network 10.3.0.0/16
+  	add peer 1 10.1.1.1
+  	add peer 2 10.2.1.1
+  	add peer 6 10.6.1.1
+  	peer 10.1.1.1 up
+  	peer 10.2.1.1 up
+  	peer 10.6.1.1 up
+
+  bgp router 10.6.1.1
+  	add network 10.6.0.0/16
+  	add peer 3 10.3.1.1
+  	add peer 5 10.5.1.1
+  	add peer 10 10.10.1.1
+  	peer 10.3.1.1 up
+  	peer 10.5.1.1 up
+  	peer 10.10.1.1 up
+
+  bgp router 10.5.1.1
+  	add network 10.5.0.0/16
+  	add peer 1 10.1.1.1
+  	add peer 6 10.6.1.1
+  	add peer 8 10.8.1.1
+  	peer 10.1.1.1 up
+  	peer 10.6.1.1 up
+  	peer 10.8.1.1 up
+
+  bgp router 10.4.1.1
+  	add network 10.4.0.0/16
+  	add peer 1 10.1.1.1
+  	add peer 7 10.7.1.1
+  	peer 10.1.1.1 up
+  	peer 10.7.1.1 up
+
+  bgp router 10.7.1.1
+  	add network 10.7.0.0/16
+  	add peer 4 10.4.1.1
+  	add peer 9 10.9.1.3
+  	peer 10.4.1.1 up
+  	peer 10.9.1.3 up
+
+  bgp router 10.8.1.1
+  	add network 10.8.0.0/16
+  	add peer 5 10.5.1.1
+  	add peer 9 10.9.1.2
+  	peer 10.5.1.1 up
+  	peer 10.9.1.2 up
+
+  bgp router 10.9.1.3
+  	add network 10.9.0.0/16
+  	add peer 7 10.7.1.1
+  	add peer 9 10.9.1.1
+  	add peer 9 10.9.1.2
+  	peer 10.7.1.1 up
+  	peer 10.9.1.1 up
+  	peer 10.9.1.2 up
+
+  bgp router 10.9.1.2
+  	add network 10.9.0.0/16
+  	add peer 8 10.8.1.1
+  	add peer 9 10.9.1.1
+  	add peer 9 10.9.1.3
+  	peer 10.8.1.1 up
+  	peer 10.9.1.1 up
+  	peer 10.9.1.3 up
+
+  bgp router 10.9.1.1
+  	add network 10.9.0.0/16
+  	add peer 10 10.10.1.1
+  	add peer 9 10.9.1.3
+  	add peer 9 10.9.1.2
+  	peer 10.10.1.1 up
+  	peer 10.9.1.3 up
+  	peer 10.9.1.2 up
+
+
+
+  bgp router 10.10.1.1
+  	add network 10.10.0.0/16
+  	add peer 9 10.9.1.1
+  	add peer 6 10.6.1.1
+  	add peer 2 10.2.1.1
+  	peer 10.6.1.1 up
+  	peer 10.9.1.1 up
+  	peer 10.2.1.1 up
+
+
+
+  bgp router 10.2.1.1
+  	peer 10.10.1.1
+  		filter in
+  			add-rule
+  				match any
+    				action "local-pref 100"
+  				exit
+  			exit
+    		filter out
+  			add-rule
+  				match any
+  				action "community strip"
+  				exit
+  			exit
+  		exit
+  	peer 10.3.1.1
+  		filter in
+  			add-rule
+  				match any
+  				action "local-pref 100"
+  				exit
+  			exit
+  		filter out
+  			add-rule
+  				match any
+  				action "community strip"
+  				exit
+  			exit
+  		exit
+  	peer 10.1.1.1
+  		filter in
+  			add-rule
+  				match any
+  				action "local-pref 100"
+  				exit
+  			exit
+  		filter out
+  			add-rule
+  				match any
+  				action "community strip"
+  				exit
+  			exit
+  		exit
+
+  bgp router 10.3.1.1
+  	peer 10.6.1.1
+  		filter in
+  			add-rule
+  				match any
+  				action "local-pref 100"
+  				exit
+  			exit
+  		filter out
+  			add-rule
+  				match any
+  				action "community strip"
+  				exit
+  			exit
+  		exit
+  	peer 10.2.1.1
+  		filter in
+  			add-rule
+  				match any
+  				action "local-pref 10, community add 1"
+  				exit
+  			exit
+  		filter out
+  			add-rule
+  				match "community is 1"
+  				action deny
+  				exit
+  			add-rule
+  				match any
+  				action "community strip"
+  				exit
+  			exit
+  		exit
+  	peer 10.1.1.1
+  		filter in
+  			add-rule
+  				match any
+  				action "local-pref 50, community add 1"
+  				exit
+  			exit
+  		filter out
+  			add-rule
+  				match "community is 1"
+  				action deny
+  				exit
+  			add-rule
+  				match any
+  				action "community strip"
+  				exit
+  			exit
+  		exit
+
+  bgp router 10.1.1.1
+  	peer 10.4.1.1
+  		filter in
+  			add-rule
+  				match any
+  				action "local-pref 100"
+  				exit
+  			exit
+  		filter out
+  			add-rule
+  				match any
+  				action "community strip"
+  				exit
+  			exit
+  		exit
+  	peer 10.5.1.1
+  		filter in
+  			add-rule
+  				match any
+  				action "local-pref 100"
+  				exit
+  			exit
+  		filter out
+  			add-rule
+  				match any
+  				action "community strip"
+  				exit
+  			exit
+  		exit
+  	peer 10.2.1.1
+  		filter in
+  			add-rule
+  				match any
+  				action "local-pref 10, community add 1"
+  				exit
+  			exit
+  		filter out
+  			add-rule
+  				match "community is 1"
+  				action deny
+  				exit
+  			add-rule
+  				match any
+  				action "community strip"
+  				exit
+  			exit
+  		exit
+  	peer 10.3.1.1
+  		filter in
+  			add-rule
+  				match any
+  				action "local-pref 50, community add 1"
+  				exit
+  			exit
+  		filter out
+  			add-rule
+  				match "community is 1"
+  				action deny
+  				exit
+  			add-rule
+  				match any
+  				action "community strip"
+  				exit
+  			exit
+  		exit
+
+  bgp router 10.5.1.1
+  	peer 10.8.1.1
+  		filter in
+  			add-rule
+  				match any
+  				action "local-pref 100"
+  				exit
+  			exit
+  		filter out
+  			add-rule
+  				match any
+  				action "community strip"
+  				exit
+  			exit
+  		exit
+  	peer 10.1.1.1
+  		filter in
+  			add-rule
+  				match any
+  				action "local-pref 10, community add 1"
+  				exit
+  			exit
+  		filter out
+  			add-rule
+  				match "community is 1"
+  				action deny
+  				exit
+  			add-rule
+  				match any
+  				action "community strip"
+  				exit
+  			exit
+  		exit
+  	peer 10.6.1.1
+  		filter in
+  			add-rule
+  				match any
+  				action "local-pref 50, community add 1"
+  				exit
+  			exit
+  		filter out
+  			add-rule
+  				match "community is 1"
+  				action deny
+  				exit
+  			add-rule
+  				match any
+  				action "community strip"
+  				exit
+  			exit
+  		exit
+
+  bgp router 10.6.1.1
+  	peer 10.10.1.1
+  		filter in
+  			add-rule
+  				match any
+  				action "local-pref 100"
+  				exit
+  			exit
+  		filter out
+  			add-rule
+  				match any
+  				action "community strip"
+  				exit
+  			exit
+  		exit
+  	peer 10.3.1.1
+  		filter in
+  			add-rule
+  				match any
+  				action "local-pref 10, community add 1"
+  				exit
+  			exit
+  		filter out
+  			add-rule
+  				match "community is 1"
+  				action deny
+  				exit
+  			add-rule
+  				match any
+  				action "community strip"
+  				exit
+  			exit
+  		exit
+  	peer 10.5.1.1
+  		filter in
+  			add-rule
+  				match any
+  				action "local-pref 50, community add 1"
+  				exit
+  			exit
+  		filter out
+  			add-rule
+  				match "community is 1"
+  				action deny
+  				exit
+  			add-rule
+  				match any
+  				action "community strip"
+  				exit
+  			exit
+  		exit
+
+  bgp router 10.4.1.1
+  	peer 10.7.1.1
+  		filter in
+  			add-rule
+  				match any
+  				action "local-pref 100"
+  				exit
+  			exit
+  		exit
+  	peer 10.1.1.1
+  		filter in
+  			add-rule
+  				match any
+  				action "local-pref 10"
+  				exit
+  			exit
+  		exit
+
+  bgp router 10.7.1.1
+  	peer 10.9.1.3
+  		filter in
+  			add-rule
+  				match any
+  				action "local-pref 100"
+  				exit
+  			exit
+  		exit
+  	peer 10.4.1.1
+  		filter in
+  			add-rule
+  				match any
+  				action "local-pref 10"
+  				exit
+  			exit
+  		exit
+
+  bgp router 10.8.1.1
+  	peer 10.9.1.2
+  		filter in
+  			add-rule
+  				match any
+  				action "local-pref 100"
+  				exit
+  			exit
+  		exit
+  	peer 10.5.1.1
+  		filter in
+  			add-rule
+  				match any
+  				action "local-pref 10"
+  				exit
+  			exit
+  		exit
+
+  bgp router 10.9.1.2
+  	peer 10.8.1.1
+  		filter in
+  			add-rule
+  				match any
+  				action "local-pref 10, community add 1"
+  				exit
+  			exit
+  		filter out
+  		add-rule
+  				match "community is 2"
+  				action deny
+  			exit
+  		exit
+  		exit
+
+  bgp router 10.9.1.3
+  	peer 10.7.1.1
+  		filter in
+  			add-rule
+  				match any
+  				action "local-pref 10, community add 2"
+  				exit
+  			exit
+  		filter out
+  		add-rule
+  				match "community is 1"
+  				action deny
+  			exit
+  		exit
+  		exit
+
+  bgp router 10.9.1.1
+  	peer 10.10.1.1
+  		filter in
+  			add-rule
+  				match any
+  				action "local-pref 100"
+  				exit
+  			exit
+  		exit
+
+  bgp router 10.10.1.1
+  	peer 10.9.1.1
+  		filter in
+  			add-rule
+  				match any
+  				action "local-pref 10, community add 1"
+  				exit
+  			exit
+  		filter out
+  		add-rule
+  				match "community is 1"
+  				action deny
+  			exit
+  		exit
+  		exit
+  	peer 10.6.1.1
+  		filter in
+  			add-rule
+  				match any
+  				action "local-pref 10, community add 1"
+  				exit
+  			exit
+  		filter out
+  		add-rule
+  				match "community is 1"
+  				action deny
+  			exit
+  		exit
+  		exit
+  	peer 10.2.1.1
+  		filter in
+  			add-rule
+  				match any
+  				action "local-pref 10, community add 1"
+  				exit
+  			exit
+  		filter out
+  		add-rule
+  				match "community is 1"
+  				action deny
+  			exit
+  		exit
+  		exit
+
+
+
+  sim run
